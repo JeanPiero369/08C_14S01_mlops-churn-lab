@@ -7,7 +7,7 @@ El proyecto funciona, sus tests pasan y tiene un bug que solo aparece en producc
 ## Cómo empezar
 
 1. Haz **fork** de este repositorio a tu cuenta.
-2. Clona tu fork y crea el entorno:
+2. Clona tu fork (reemplaza `TU-USUARIO` por tu usuario de GitHub) y crea el entorno:
 
 ```bash
 git clone https://github.com/TU-USUARIO/mlops-churn-lab.git
