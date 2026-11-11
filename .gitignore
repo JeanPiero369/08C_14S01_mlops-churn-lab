@@ -1,0 +1,91 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+*.whl
+.installed.cfg
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# MLflow
+mlruns/
+mlartifacts/
+mlflow.db
+
+# Data — raw/processed (keep only samples or nothing)
+data/*.pkl
+data/*.json
+data/*.png
+data/*.jpg
+# CSV: excluir procesados, conservar dataset fuente
+data/X_*.csv
+data/y_*.csv
+data/batch_*.csv
+data/telco_churn_raw.csv
+# Uncomment to track data with DVC instead:
+# !data/.gitkeep
+
+# Models
+*.pkl
+*.joblib
+*.pt
+*.pth
+*.h5
+*.onnx
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+*.out
+
+# Reports (generated)
+reports/*.html
+reports/*.pdf
+
+# Temp
+tmp/
+temp/
+.tmp/
+
+# Terraform
+infra/.terraform/
+infra/terraform.tfstate
+infra/terraform.tfstate.backup
+infra/terraform.tfstate.d/
+# Note: infra/.terraform.lock.hcl should be committed
+
+# draw.io temp files
+*.bkp
+*.dtmp
+
+slides_CRISP_DM_Churn.html
+docs/slides_MLOps_Churn.html
