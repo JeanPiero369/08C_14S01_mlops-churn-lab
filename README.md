@@ -4,6 +4,21 @@ Punto de partida de los laboratorios 14.1 y 14.2: predicción de churn para una 
 
 El proyecto funciona, sus tests pasan y tiene un bug que solo aparece en producción. Encontrarlo y eliminarlo es el primer paso del laboratorio.
 
+## El caso
+
+**Predicción de Churn para una Fintech**
+
+Una fintech detectó un incremento en la pérdida de clientes (churn). El área de analítica ya construyó una primera solución: entrena un modelo, registra experimentos en MLflow, lo publica como API y tiene un pipeline en GitHub Actions. Todo corre y los tests pasan, pero el negocio desconfía de las predicciones y nadie puede explicar por qué se eligió ese modelo ni cuándo habría que reemplazarlo.
+
+El reto del equipo es llevar esa solución a un nivel confiable siguiendo CRISP-ML(Q):
+
+- Validar los datos antes de entrenar.
+- Garantizar que la API prediga lo mismo que el modelo evaluado.
+- Elegir el modelo con evidencia y decidir con criterios de negocio.
+- Promover a producción solo lo que pasa un quality gate.
+- Detectar cuándo el modelo deja de funcionar y reentrenarlo.
+- Documentar riesgos, controles y decisiones.
+
 ## Cómo empezar
 
 1. Haz **fork** de este repositorio a tu cuenta.
