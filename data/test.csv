@@ -1,0 +1,61 @@
+tenure_months,monthly_charges,support_tickets_last_6m,gender,contract_type,internet_service,senior_citizen,churn
+51,100.32,2,Male,One Year,DSL,0,0
+12,79.12,8,Male,Month-to-Month,DSL,1,0
+45,98.45,4,Male,One Year,Fiber,0,0
+34,49.55,7,Male,Two Year,Fiber,0,0
+19,27.85,0,Male,One Year,Fiber,0,0
+67,72.54,3,Female,Month-to-Month,Fiber,0,0
+13,60.47,8,Male,Month-to-Month,DSL,1,1
+5,31.14,8,Female,Two Year,DSL,0,0
+63,77.89,9,Male,Month-to-Month,Fiber,0,1
+34,20.64,7,Female,Month-to-Month,Fiber,0,0
+14,75.67,7,Female,Month-to-Month,Fiber,0,1
+44,59.95,0,Male,Month-to-Month,Fiber,0,1
+28,33.18,4,Female,One Year,None,0,0
+6,104.66,6,Male,Month-to-Month,Fiber,0,1
+35,146.02,5,Female,Month-to-Month,Fiber,0,1
+44,62.04,6,Male,Month-to-Month,None,0,1
+27,133.2,6,Male,Month-to-Month,Fiber,0,1
+56,20.98,3,Male,Month-to-Month,Fiber,0,0
+8,133.2,3,Male,Two Year,Fiber,0,1
+63,100.23,3,Male,One Year,DSL,0,1
+36,64.97,0,Male,Month-to-Month,Fiber,0,0
+52,95.42,0,Male,Two Year,DSL,0,0
+4,93.71,6,Male,Month-to-Month,DSL,0,1
+34,71.2,3,Female,One Year,DSL,0,0
+57,115.79,10,Male,One Year,DSL,0,1
+23,34.55,1,Female,Two Year,Fiber,1,0
+6,33.89,1,Female,One Year,DSL,0,0
+45,53.5,7,Female,Month-to-Month,Fiber,0,1
+51,23.07,2,Male,One Year,Fiber,0,0
+53,55.07,8,Female,Month-to-Month,Fiber,0,1
+26,100.53,4,Male,Month-to-Month,None,0,0
+51,110.04,10,Female,Month-to-Month,DSL,1,1
+42,88.27,10,Female,One Year,Fiber,0,1
+46,70.84,2,Female,Month-to-Month,Fiber,0,0
+66,132.16,3,Female,Month-to-Month,Fiber,0,0
+8,48.18,2,Female,Month-to-Month,Fiber,1,1
+70,25.64,6,Female,Two Year,None,0,0
+22,67.64,4,Female,Month-to-Month,None,0,1
+67,40.74,1,Female,Month-to-Month,Fiber,0,1
+31,121.47,7,Male,Month-to-Month,Fiber,1,1
+23,51.65,2,Male,One Year,DSL,0,0
+35,62.16,9,Male,Month-to-Month,DSL,0,1
+6,53.56,10,Male,Month-to-Month,DSL,0,1
+4,47.57,7,Female,Month-to-Month,Fiber,0,1
+69,107.03,7,Female,Two Year,DSL,0,0
+16,97.01,1,Female,One Year,DSL,0,0
+38,110.02,8,Male,One Year,Fiber,0,1
+34,25.4,5,Female,Month-to-Month,DSL,1,0
+17,89.05,0,Female,Two Year,DSL,1,1
+46,68.52,9,Female,Two Year,DSL,0,0
+31,133.55,0,Male,One Year,Fiber,0,0
+45,103.46,2,Female,Month-to-Month,None,1,1
+47,80.25,9,Male,Two Year,None,0,0
+2,87.48,3,Female,One Year,DSL,0,0
+51,76.63,4,Female,Month-to-Month,Fiber,1,1
+19,84.58,7,Female,Month-to-Month,Fiber,0,1
+29,94.18,2,Male,Two Year,DSL,0,1
+66,37.01,9,Female,Month-to-Month,Fiber,0,0
+33,24.77,1,Female,One Year,DSL,0,0
+47,89.37,10,Male,Month-to-Month,Fiber,0,1
