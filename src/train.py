@@ -1,6 +1,6 @@
 """CRISP-ML(Q) fase 3 · Modelado con MLflow tracking.
 
-Entrena un baseline y tres candidatos. Cada candidato es un Pipeline
+Entrena un baseline y cuatro candidatos. Cada candidato es un Pipeline
 (preprocesamiento + clasificador) evaluado con validación cruzada estratificada
 sobre train. El mejor se elige por F1 de validación cruzada: el set de test
 no participa en la selección, queda reservado para la fase de evaluación.
@@ -13,7 +13,7 @@ import mlflow
 import mlflow.sklearn
 import pandas as pd
 from sklearn.dummy import DummyClassifier
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import StratifiedKFold, cross_validate
 from xgboost import XGBClassifier
@@ -21,7 +21,7 @@ from xgboost import XGBClassifier
 from common import DATA_DIR, MLFLOW_URI, feature_columns, load_config
 from features import build_pipeline
 
-CANDIDATES = ["logistic", "random_forest", "xgboost"]
+CANDIDATES = ["logistic", "random_forest", "xgboost", "gradient_boosting"]
 SCORING = {"f1": "f1", "roc_auc": "roc_auc", "precision": "precision", "recall": "recall"}
 
 
@@ -41,6 +41,12 @@ def get_estimator(name: str, seed: int):
         "xgboost": (
             XGBClassifier(n_estimators=100, max_depth=3, learning_rate=0.1, random_state=seed,
                           eval_metric="logloss", verbosity=0),
+            {"n_estimators": 100, "max_depth": 3, "learning_rate": 0.1},
+        ),
+        # Mismos hiperparámetros que xgboost: se compara la implementación, no la configuración.
+        "gradient_boosting": (
+            GradientBoostingClassifier(n_estimators=100, max_depth=3, learning_rate=0.1,
+                                       random_state=seed),
             {"n_estimators": 100, "max_depth": 3, "learning_rate": 0.1},
         ),
     }
@@ -86,14 +92,14 @@ def main():
     mlflow.set_experiment(cfg["project"]["experiment"])
 
     baseline = train_one("baseline", X, y, cfg)
-    print(f"baseline       F1 CV = {baseline['metrics']['cv_f1_mean']:.4f}")
+    print(f"{'baseline':<18} F1 CV ={baseline['metrics']['cv_f1_mean']:.4f}")
 
     results = []
     for name in CANDIDATES if args.model == "all" else [args.model]:
         result = train_one(name, X, y, cfg)
         results.append(result)
         m = result["metrics"]
-        print(f"{name:<14} F1 CV = {m['cv_f1_mean']:.4f} ± {m['cv_f1_std']:.4f} | ROC-AUC CV = {m['cv_roc_auc_mean']:.4f}")
+        print(f"{name:<18} F1 CV = {m['cv_f1_mean']:.4f} ± {m['cv_f1_std']:.4f} | ROC-AUC CV = {m['cv_roc_auc_mean']:.4f}")
 
     selection = cfg["training"]["selection_metric"]
     best = max(results, key=lambda r: r["metrics"][selection])
