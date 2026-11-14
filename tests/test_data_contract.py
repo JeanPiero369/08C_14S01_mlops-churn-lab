@@ -32,6 +32,17 @@ def test_out_of_range_fails():
     assert "monthly_charges:range" in _failed(df)
 
 
+def test_duplicate_rows_fails():
+    # La misma fila cargada dos veces, con otro id: unique_id no la detecta
+    df = load_raw(load_config())
+    copy = df.iloc[[0]].copy()
+    copy["customer_id"] = "DUP-0001"
+    df = pd.concat([df, copy], ignore_index=True)
+    failed = _failed(df)
+    assert "duplicate_rows" in failed
+    assert "unique_id" not in failed
+
+
 def test_missing_column_fails():
     df = load_raw(load_config()).drop(columns=["tenure_months"])
     assert "tenure_months:exists" in _failed(df)

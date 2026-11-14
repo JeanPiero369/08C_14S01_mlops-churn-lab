@@ -28,6 +28,13 @@ def validate(df: pd.DataFrame, cfg: dict) -> list:
         dups = int(df[id_col].duplicated().sum())
         add("unique_id", dups == 0, f"{dups} ids duplicados")
 
+    # Duplicados completos: se ignora el id, porque unique_id ya lo controla y una
+    # fila copiada con otro id (carga repetida) pasaría desapercibida.
+    content_cols = [c for c in df.columns if c != id_col]
+    dup_rows = int(df.duplicated(subset=content_cols).sum())
+    max_dup = data_cfg.get("max_duplicate_rows", 0)
+    add("duplicate_rows", dup_rows <= max_dup, f"{dup_rows} filas duplicadas (máximo {max_dup})")
+
     for col, rule in data_cfg["columns"].items():
         if col not in df.columns:
             add(f"{col}:exists", False, "columna ausente")

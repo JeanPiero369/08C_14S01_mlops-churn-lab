@@ -11,8 +11,9 @@ project:
 # Costos en soles por cliente. Un falso negativo (churner no detectado) cuesta
 # más que un falso positivo (oferta de retención a quien no se iba).
 business:
-  cost_fn: 200
-  cost_fp: 100
+  # Reto 1: antes cost_fn 200 / cost_fp 100
+  cost_fn: 500
+  cost_fp: 50
 
 # ── Fase 1 · Contrato de datos ──────────────────────────────────────────────
 data:
@@ -20,6 +21,8 @@ data:
   id_column: customer_id
   target: churn
   min_rows: 200
+  # Filas idénticas en todas las columnas salvo el id (misma fila cargada dos veces)
+  max_duplicate_rows: 0
   # Proporción aceptable de la clase positiva (alerta si el dataset cambia de naturaleza)
   target_rate: {min: 0.20, max: 0.80}
   columns:
@@ -47,9 +50,9 @@ quality_gate:
   min_f1: 0.60
   min_roc_auc: 0.70
   must_beat_baseline: true
-  # Diferencia máxima de recall entre grupos (gender, senior_citizen)
+  # Diferencia máxima de recall entre grupos de cada segmento
   max_recall_gap: 0.25
-  slices: [gender, senior_citizen]
+  slices: [gender, senior_citizen, contract_type]
 
 # ── Fase 6 · Monitoreo ──────────────────────────────────────────────────────
 monitoring:

@@ -1,0 +1,129 @@
+{
+  "dataset": "data/telco_customer_churn_mlops.csv",
+  "rows": 300,
+  "checks_total": 24,
+  "checks_failed": 0,
+  "passed": true,
+  "checks": [
+    {
+      "check": "min_rows",
+      "passed": true,
+      "detail": "300 filas (mínimo 200)"
+    },
+    {
+      "check": "unique_id",
+      "passed": true,
+      "detail": "0 ids duplicados"
+    },
+    {
+      "check": "duplicate_rows",
+      "passed": true,
+      "detail": "0 filas duplicadas (máximo 0)"
+    },
+    {
+      "check": "gender:no_nulls",
+      "passed": true,
+      "detail": "0 nulos"
+    },
+    {
+      "check": "gender:allowed_values",
+      "passed": true,
+      "detail": "valores inesperados: []"
+    },
+    {
+      "check": "senior_citizen:no_nulls",
+      "passed": true,
+      "detail": "0 nulos"
+    },
+    {
+      "check": "senior_citizen:numeric",
+      "passed": true,
+      "detail": "0 valores no numéricos"
+    },
+    {
+      "check": "senior_citizen:range",
+      "passed": true,
+      "detail": "0 fuera de [0, 1]"
+    },
+    {
+      "check": "tenure_months:no_nulls",
+      "passed": true,
+      "detail": "0 nulos"
+    },
+    {
+      "check": "tenure_months:numeric",
+      "passed": true,
+      "detail": "0 valores no numéricos"
+    },
+    {
+      "check": "tenure_months:range",
+      "passed": true,
+      "detail": "0 fuera de [0, 120]"
+    },
+    {
+      "check": "contract_type:no_nulls",
+      "passed": true,
+      "detail": "0 nulos"
+    },
+    {
+      "check": "contract_type:allowed_values",
+      "passed": true,
+      "detail": "valores inesperados: []"
+    },
+    {
+      "check": "internet_service:no_nulls",
+      "passed": true,
+      "detail": "0 nulos"
+    },
+    {
+      "check": "internet_service:allowed_values",
+      "passed": true,
+      "detail": "valores inesperados: []"
+    },
+    {
+      "check": "monthly_charges:no_nulls",
+      "passed": true,
+      "detail": "0 nulos"
+    },
+    {
+      "check": "monthly_charges:numeric",
+      "passed": true,
+      "detail": "0 valores no numéricos"
+    },
+    {
+      "check": "monthly_charges:range",
+      "passed": true,
+      "detail": "0 fuera de [0, 500]"
+    },
+    {
+      "check": "support_tickets_last_6m:no_nulls",
+      "passed": true,
+      "detail": "0 nulos"
+    },
+    {
+      "check": "support_tickets_last_6m:numeric",
+      "passed": true,
+      "detail": "0 valores no numéricos"
+    },
+    {
+      "check": "support_tickets_last_6m:range",
+      "passed": true,
+      "detail": "0 fuera de [0, 50]"
+    },
+    {
+      "check": "churn:no_nulls",
+      "passed": true,
+      "detail": "0 nulos"
+    },
+    {
+      "check": "churn:allowed_values",
+      "passed": true,
+      "detail": "valores inesperados: []"
+    },
+    {
+      "check": "target_rate",
+      "passed": true,
+      "detail": "churn rate 0.497 (esperado entre 0.2 y 0.8)"
+    }
+  ]
+}
