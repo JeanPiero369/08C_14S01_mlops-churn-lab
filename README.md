@@ -53,7 +53,7 @@ uvicorn app.main:app --port 8000      # http://localhost:8000/docs
 ├── app/main.py                     # API FastAPI: /predict, /predict/batch, /health
 ├── src/
 │   ├── data_prep.py                # limpieza, encoding, escalado y split
-│   ├── train.py                    # 3 modelos con MLflow tracking
+│   ├── train.py                    # 4 modelos con MLflow tracking
 │   └── evaluate_and_register.py    # registro en MLflow Model Registry
 ├── tests/                          # tests de la API con el modelo mockeado
 ├── data/
@@ -77,6 +77,39 @@ uvicorn app.main:app --port 8000      # http://localhost:8000/docs
 | `monthly_charges` | decimal | Cargo mensual |
 | `support_tickets_last_6m` | entero | Tickets de soporte en 6 meses |
 | `churn` | Yes/No | El cliente abandonó (target) |
+
+## Comparación de modelos candidatos
+
+`src/train.py` entrena un baseline y cuatro candidatos. El cuarto, `gradient_boosting` (`GradientBoostingClassifier` de scikit-learn), se agregó con los mismos hiperparámetros que `xgboost` (`n_estimators=100`, `max_depth=3`, `learning_rate=0.1`) para comparar la implementación y no la configuración.
+
+Todos se evalúan con validación cruzada estratificada de 5 folds sobre train (240 clientes), con la misma semilla, y quedan como runs del experimento `churn-prediction-fintech` en MLflow.
+
+| Modelo | F1 CV (media ± desv.) | ROC-AUC CV (media ± desv.) |
+|---|---|---|
+| `baseline` (predice siempre churn) | 0.6629 ± 0.0075 | 0.5000 ± 0.0000 |
+| `logistic` | 0.6666 ± 0.0454 | 0.7315 ± 0.0408 |
+| **`random_forest`** (elegido) | **0.6900 ± 0.0426** | **0.7326 ± 0.0421** |
+| `xgboost` | 0.6829 ± 0.0656 | 0.7100 ± 0.0627 |
+| `gradient_boosting` (nuevo) | 0.6476 ± 0.0761 | 0.6858 ± 0.0604 |
+
+**Resultado del cuarto modelo.** `gradient_boosting` obtiene F1 CV = 0.6476 y ROC-AUC CV = 0.6858. Es el último de los cuatro candidatos en ambas métricas y su F1 queda incluso por debajo del baseline (0.6629).
+
+**¿Cambia el modelo elegido?** No. La selección se hace por `cv_f1_mean` (`configs/churn.yaml`) y `random_forest` sigue siendo el mejor, así que el modelo `@champion` y los reportes de evaluación no cambian.
+
+Dos notas para leer la tabla:
+
+- Con 240 filas de entrenamiento, las diferencias entre candidatos son del mismo orden que la desviación entre folds. El orden entre candidatos no es concluyente; lo que la tabla sí muestra es que no hay evidencia de que `gradient_boosting` mejore a ninguno.
+- `GradientBoostingClassifier` no acepta `class_weight`, a diferencia de `logistic` y `random_forest`, que usan `class_weight="balanced"`. Aquí pesa poco, porque train está casi balanceado (49.6 % de churn).
+
+Para reproducir la comparación:
+
+```bash
+python src/data_prep.py
+python src/train.py --model all
+mlflow ui                             # http://localhost:5000 → experimento churn-prediction-fintech
+```
+
+En la UI de MLflow, selecciona los cinco runs y usa **Compare** para ver `cv_f1_mean` y `cv_roc_auc_mean` lado a lado.
 
 ## Qué vas a construir
 

@@ -1,6 +1,6 @@
 {
   "model_type": "random_forest",
-  "version": "2",
+  "version": "3",
   "threshold": 0.3,
   "train_rows": 240,
   "test_rows": 60,
@@ -90,7 +90,7 @@
     ]
   },
   "champion": {
-    "previous_version": 1,
+    "previous_version": 2,
     "previous_cost": 43.333333333333336,
     "beats_champion": true
   },
